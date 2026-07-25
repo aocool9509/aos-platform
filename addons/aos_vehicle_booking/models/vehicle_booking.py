@@ -78,6 +78,28 @@ class AosVehicleBooking(models.Model):
     def action_submit(self):
         if any(booking.state != "draft" for booking in self):
             raise UserError("Only draft bookings can be submitted.")
+        for booking in self:
+            if not booking.vehicle_id:
+                raise UserError("Vehicle is required before submission.")
+            if not booking.start_datetime:
+                raise UserError(
+                    "Start date and time is required before submission."
+                )
+            if not booking.end_datetime:
+                raise UserError(
+                    "End date and time is required before submission."
+                )
+            if not booking.destination or not booking.destination.strip():
+                raise UserError("Destination is required before submission.")
+            if not booking.purpose or not booking.purpose.strip():
+                raise UserError("Purpose is required before submission.")
+            if not booking.vehicle_id.active:
+                raise UserError("The selected vehicle must be active.")
+            if booking.start_datetime >= booking.end_datetime:
+                raise UserError(
+                    "Start date and time must be earlier than "
+                    "end date and time."
+                )
         self.write({"state": "submitted"})
         return True
 
@@ -90,6 +112,11 @@ class AosVehicleBooking(models.Model):
     def action_reject(self):
         if any(booking.state != "submitted" for booking in self):
             raise UserError("Only submitted bookings can be rejected.")
+        if any(
+            not booking.decision_note or not booking.decision_note.strip()
+            for booking in self
+        ):
+            raise UserError("Decision note is required before rejection.")
         self.write({"state": "rejected"})
         return True
 
