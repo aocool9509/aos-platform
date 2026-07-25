@@ -1,0 +1,70 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Python environments and packaging
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# Odoo runtime files
+/logs/
+*.log
+/backups/
+/data/
+/filestore/
+/sessions/
+
+# Local configuration and secrets
+/config/odoo.conf
+/config/*.local.conf
+!/config/*.example
+!/config/*.example.conf
+!/config/odoo.conf.example
+.env
+.env.*
+!.env.example
+
+# PostgreSQL dumps and backups
+*.dump
+*.backup
+*.sql.gz
+*.sql.zip
+*.pgdump
+*.sql
+
+# IDE and editor metadata
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Temporary and generated files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+~$*
+.cache/
+tmp/
+temp/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
