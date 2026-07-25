@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class AosVehicleBooking(models.Model):
@@ -74,3 +74,30 @@ class AosVehicleBooking(models.Model):
                 raise ValidationError(
                     "End date and time must be later than start date and time."
                 )
+
+    def action_submit(self):
+        if any(booking.state != "draft" for booking in self):
+            raise UserError("Only draft bookings can be submitted.")
+        self.write({"state": "submitted"})
+        return True
+
+    def action_approve(self):
+        if any(booking.state != "submitted" for booking in self):
+            raise UserError("Only submitted bookings can be approved.")
+        self.write({"state": "approved"})
+        return True
+
+    def action_reject(self):
+        if any(booking.state != "submitted" for booking in self):
+            raise UserError("Only submitted bookings can be rejected.")
+        self.write({"state": "rejected"})
+        return True
+
+    def action_cancel(self):
+        allowed_states = {"draft", "submitted", "approved"}
+        if any(booking.state not in allowed_states for booking in self):
+            raise UserError(
+                "Only draft, submitted, or approved bookings can be cancelled."
+            )
+        self.write({"state": "cancelled"})
+        return True
