@@ -5,7 +5,9 @@
     "category": "Operations",
     "license": "LGPL-3",
     "depends": ["base", "aos_base"],
-    "data": [],
+    "data": [
+        "data/vehicle_booking_sequence.xml",
+    ],
     "installable": True,
     "application": True,
 }
