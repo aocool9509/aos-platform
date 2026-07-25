@@ -63,6 +63,18 @@ class AosVehicleBooking(models.Model):
         ),
     ]
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("name") or vals["name"] == "New":
+                vals["name"] = (
+                    self.env["ir.sequence"].next_by_code(
+                        "aos.vehicle.booking"
+                    )
+                    or "New"
+                )
+        return super().create(vals_list)
+
     @api.constrains("start_datetime", "end_datetime")
     def _check_datetime_order(self):
         for booking in self:
