@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="action_aos_vehicle_booking_welcome" model="ir.actions.act_window">
+        <field name="name">Welcome</field>
+        <field name="res_model">aos.vehicle.booking</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[("id", "=", 0)]</field>
+        <field name="context">
+            {"create": False, "edit": False, "delete": False}
+        </field>
+        <field name="help" type="html">
+            <div class="text-center">
+                <h1>AOS Vehicle Booking</h1>
+                <h2>Demo Version</h2>
+                <p>
+                    An internal vehicle booking demo for managing vehicles,
+                    booking requests, and their workflow.
+                </p>
+                <h3>Current Capabilities</h3>
+                <ul class="list-unstyled">
+                    <li>Manage vehicles</li>
+                    <li>Create vehicle bookings</li>
+                    <li>Process booking workflow</li>
+                    <li>View bookings in a calendar</li>
+                </ul>
+            </div>
+        </field>
+    </record>
+
     <record id="view_aos_vehicle_booking_list" model="ir.ui.view">
         <field name="name">aos.vehicle.booking.list</field>
         <field name="model">aos.vehicle.booking</field>
@@ -69,9 +96,34 @@
         </field>
     </record>
 
+    <record id="view_aos_vehicle_booking_calendar" model="ir.ui.view">
+        <field name="name">aos.vehicle.booking.calendar</field>
+        <field name="model">aos.vehicle.booking</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Booking Calendar"
+                date_start="start_datetime"
+                date_stop="end_datetime"
+                color="vehicle_id"
+            >
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="requester_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="action_aos_vehicle_booking" model="ir.actions.act_window">
         <field name="name">Bookings</field>
         <field name="res_model">aos.vehicle.booking</field>
         <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_aos_vehicle_booking_calendar" model="ir.actions.act_window">
+        <field name="name">Booking Calendar</field>
+        <field name="res_model">aos.vehicle.booking</field>
+        <field name="view_mode">calendar,form</field>
+        <field name="view_id" ref="view_aos_vehicle_booking_calendar"/>
     </record>
 </odoo>

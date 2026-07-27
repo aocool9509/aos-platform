@@ -3,6 +3,7 @@
     <menuitem
         id="menu_aos_root"
         name="AOS"
+        action="action_aos_vehicle_booking_welcome"
         sequence="10"
         groups="base.group_user"
     />
@@ -10,6 +11,14 @@
         id="menu_aos_vehicle_booking_root"
         name="Vehicle Booking"
         parent="menu_aos_root"
+        action="action_aos_vehicle_booking_welcome"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_aos_vehicle_booking_welcome"
+        name="Welcome"
+        parent="menu_aos_vehicle_booking_root"
+        action="action_aos_vehicle_booking_welcome"
         sequence="10"
     />
     <menuitem
@@ -17,13 +26,20 @@
         name="Bookings"
         parent="menu_aos_vehicle_booking_root"
         action="action_aos_vehicle_booking"
-        sequence="10"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_aos_vehicle_booking_calendar"
+        name="Calendar"
+        parent="menu_aos_vehicle_booking_root"
+        action="action_aos_vehicle_booking_calendar"
+        sequence="30"
     />
     <menuitem
         id="menu_aos_vehicle_booking_vehicles"
         name="Vehicles"
         parent="menu_aos_vehicle_booking_root"
         action="action_aos_vehicle"
-        sequence="20"
+        sequence="40"
     />
 </odoo>
