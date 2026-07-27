@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template
+        id="vehicle_booking_landing_page"
+        name="AOS Vehicle Booking Demo"
+    >
+        <t t-call="web.frontend_layout">
+            <t t-set="title">AOS Vehicle Booking</t>
+            <main>
+                <div class="container py-5">
+                    <div class="mx-auto" style="max-width: 720px;">
+                        <div class="text-center mb-5">
+                            <h1 class="display-4">AOS Vehicle Booking</h1>
+                            <p class="lead fw-bold">Demo Version</p>
+                            <p class="text-muted">
+                                An internal vehicle booking demo for managing
+                                vehicles, booking requests, and their workflow.
+                            </p>
+                        </div>
+
+                        <section class="mb-5">
+                            <h2 class="h4">Current Capabilities</h2>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    Manage vehicles
+                                </li>
+                                <li class="list-group-item">
+                                    Create vehicle bookings
+                                </li>
+                                <li class="list-group-item">
+                                    Process booking workflow
+                                </li>
+                                <li class="list-group-item">
+                                    View bookings in a calendar
+                                </li>
+                            </ul>
+                        </section>
+
+                        <div class="text-center">
+                            <a
+                                class="btn btn-primary btn-lg"
+                                href="/web/login?redirect=/aos/vehicle-booking/app"
+                            >
+                                Sign in to Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </t>
+    </template>
+</odoo>
