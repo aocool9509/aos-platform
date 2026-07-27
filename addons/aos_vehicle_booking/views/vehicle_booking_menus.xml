@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_aos_root"
+        name="AOS"
+        sequence="10"
+        groups="base.group_user"
+    />
+    <menuitem
+        id="menu_aos_vehicle_booking_root"
+        name="Vehicle Booking"
+        parent="menu_aos_root"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_aos_vehicle_booking_bookings"
+        name="Bookings"
+        parent="menu_aos_vehicle_booking_root"
+        action="action_aos_vehicle_booking"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_aos_vehicle_booking_vehicles"
+        name="Vehicles"
+        parent="menu_aos_vehicle_booking_root"
+        action="action_aos_vehicle"
+        sequence="20"
+    />
+</odoo>

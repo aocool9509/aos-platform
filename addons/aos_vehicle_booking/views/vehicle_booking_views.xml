@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_aos_vehicle_booking_list" model="ir.ui.view">
+        <field name="name">aos.vehicle.booking.list</field>
+        <field name="model">aos.vehicle.booking</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="requester_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_aos_vehicle_booking_form" model="ir.ui.view">
+        <field name="name">aos.vehicle.booking.form</field>
+        <field name="model">aos.vehicle.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_submit"
+                        string="Submit"
+                        type="object"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_approve"
+                        string="Approve"
+                        type="object"
+                        invisible="state != 'submitted'"
+                    />
+                    <button
+                        name="action_reject"
+                        string="Reject"
+                        type="object"
+                        invisible="state != 'submitted'"
+                    />
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        invisible="state not in ['draft', 'submitted', 'approved']"
+                    />
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="vehicle_id"/>
+                            <field name="requester_id"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="destination"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="purpose"/>
+                        <field name="decision_note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_aos_vehicle_booking" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
+        <field name="res_model">aos.vehicle.booking</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
